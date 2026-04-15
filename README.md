@@ -1,5 +1,5 @@
 # Causal Purchase Dynamics Engine
-### Online Retail II — B2B Wholesale Analytics
+### Online Retail II - B2B Wholesale Analytics
 
 > **"Which customers should a B2B wholesaler contact and which should it never contact?"**
 
