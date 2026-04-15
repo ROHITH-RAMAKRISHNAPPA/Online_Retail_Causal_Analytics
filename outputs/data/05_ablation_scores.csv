@@ -1,0 +1,3 @@
+model_variant,n_features,cv_auc,bgnbd_imputed,iptw_applied,delta_auc
+Baseline (RFM only),8,0.8197607507202649,False,True,0.0
+Enriched (RFM + BG/NBD),10,0.8868413219708767,True,True,0.06708057125061184

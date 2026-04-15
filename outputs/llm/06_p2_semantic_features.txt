@@ -1,0 +1,73 @@
+PROMPT 2 - SEMANTIC FEATURE ENGINEERING
+Framework: CAAFE (Hollmann et al. 2024)
+============================================================
+
+WHAT WE ASKED THE LLM:
+----------------------------------------
+You are a retail product taxonomy expert. Analyse these wholesale gift-ware products
+from a UK B2B retailer and assign structured semantic features to each.
+
+PRODUCTS (top 25 by revenue):
+StockCode                         Description  TotalRevenue  NumCustomers
+    22423            REGENCY CAKESTAND 3 TIER    286486.280          1314
+   85123A  WHITE HANGING HEART T-LIGHT HOLDER    252227.810          1490
+   85099B             JUMBO BAG RED RETROSPOT    170616.670           978
+    23843         PAPER CRAFT , LITTLE BIRDIE    168469.600             1
+    84879       ASSORTED COLOUR BIRD ORNAMENT    127074.170          1010
+    47566                       PARTY BUNTING    103880.230           894
+    23166      MEDIUM CERAMIC TOP STORAGE JAR     81416.730           138
+    22086     PAPER CHAIN KIT 50'S CHRISTMAS      79594.330           896
+    79321                       CHILLI LIGHTS     72860.140           304
+    22386             JUMBO BAG PINK POLKADOT     68439.190           601
+    21137            BLACK RECORD COVER FRAME     67209.445           198
+    48138                  DOORMAT UNION FLAG     64973.980           678
+   85099F                JUMBO BAG STRAWBERRY     64601.650           549
+    20685               DOORMAT RED RETROSPOT     61829.130           626
+    82484   WOOD BLACK BOARD ANT WHITE FINISH     60513.090           451
+    20725             LUNCH BAG RED RETROSPOT     60271.700           845
+    21843            RED RETROSPOT CAKE STAND     59648.090           599
+    22197                SMALL POPCORN HOLDER     59101.690           601
+    84347 ROTATING SILVER ANGELS T-LIGHT HLDR     57779.168           300
+    22502          PICNIC BASKET WICKER SMALL     55017.600           335
+    21621          VINTAGE UNION JACK BUNTING     54815.120           583
+   15056N           EDWARDIAN PARASOL NATURAL     54741.457           347
+   85099C      JUMBO  BAG BAROQUE BLACK WHITE     53168.340           506
+    22189             CREAM HEART CARD HOLDER     52627.290           536
+    22470               HEART OF WICKER LARGE     52157.680           827
+
+For each StockCode return a JSON array. Each item must have:
+  StockCode, gift_suitability (1-5), seasonal_relevance (christmas/spring/summer/autumn/none/all-year),
+  impulse_purchase_likelihood (1-5), price_tier (budget/mid-range/premium), bulk_order_likely (true/false)
+
+Return ONLY the JSON array. No markdown, no explanation, no backticks.
+Start with [ and end with ]
+
+WHAT THE LLM SAID:
+----------------------------------------
+[
+    {"StockCode": "22423", "gift_suitability": 5, "seasonal_relevance": "none", "impulse_purchase_likelihood": 3, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "85123A", "gift_suitability": 4, "seasonal_relevance": "christmas", "impulse_purchase_likelihood": 5, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "85099B", "gift_suitability": 5, "seasonal_relevance": "spring/summer", "impulse_purchase_likelihood": 2, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "23843", "gift_suitability": 4, "seasonal_relevance": "christmas", "impulse_purchase_likelihood": 5, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "84879", "gift_suitability": 3, "seasonal_relevance": "none", "impulse_purchase_likelihood": 4, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "47566", "gift_suitability": 5, "seasonal_relevance": "christmas", "impulse_purchase_likelihood": 3, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "23166", "gift_suitability": 4, "seasonal_relevance": "none", "impulse_purchase_likelihood": 2, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "22086", "gift_suitability": 5, "seasonal_relevance": "christmas", "impulse_purchase_likelihood": 3, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "79321", "gift_suitability": 4, "seasonal_relevance": "summer", "impulse_purchase_likelihood": 5, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "22386", "gift_suitability": 3, "seasonal_relevance": "spring/summer", "impulse_purchase_likelihood": 4, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "21137", "gift_suitability": 5, "seasonal_relevance": "none", "impulse_purchase_likelihood": 2, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "48138", "gift_suitability": 3, "seasonal_relevance": "none", "impulse_purchase_likelihood": 4, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "85099F", "gift_suitability": 5, "seasonal_relevance": "spring/summer", "impulse_purchase_likelihood": 3, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "20685", "gift_suitability": 4, "seasonal_relevance": "none", "impulse_purchase_likelihood": 5, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "82484", "gift_suitability": 3, "seasonal_relevance": "all-year", "impulse_purchase_likelihood": 4, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "20725", "gift_suitability": 5, "seasonal_relevance": "spring/summer", "impulse_purchase_likelihood": 2, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "21843", "gift_suitability": 4, "seasonal_relevance": "christmas", "impulse_purchase_likelihood": 5, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "22197", "gift_suitability": 3, "seasonal_relevance": "none", "impulse_purchase_likelihood": 4, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "84347", "gift_suitability": 5, "seasonal_relevance": "christmas", "impulse_purchase_likelihood": 3, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "22502", "gift_suitability": 4, "seasonal_relevance": "spring/summer", "impulse_purchase_likelihood": 5, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "21621", "gift_suitability": 3, "seasonal_relevance": "christmas", "impulse_purchase_likelihood": 4, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "15056N", "gift_suitability": 5, "seasonal_relevance": "none", "impulse_purchase_likelihood": 2, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "85099C", "gift_suitability": 4, "seasonal_relevance": "spring/summer", "impulse_purchase_likelihood": 3, "price_tier": "mid-range", "bulk_order_likely": true},
+    {"StockCode": "22189", "gift_suitability": 5, "seasonal_relevance": "none", "impulse_purchase_likelihood": 2, "price_tier": "budget", "bulk_order_likely": false},
+    {"StockCode": "22470", "gift_suitability": 4, "seasonal_relevance": "christmas", "impulse_purchase_likelihood": 5, "price_tier": "mid-range", "bulk_order_likely": true}
+]

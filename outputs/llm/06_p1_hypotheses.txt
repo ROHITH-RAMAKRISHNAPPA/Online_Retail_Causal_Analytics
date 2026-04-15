@@ -1,0 +1,105 @@
+PROMPT 1 - B2B HYPOTHESIS GENERATOR
+Framework: HypoGeniC (arXiv 2404.04326)
+============================================================
+
+WHAT WE ASKED THE LLM:
+----------------------------------------
+You are a quantitative marketing scientist specialising in B2B wholesale retail analytics.
+Below are validated summary statistics from the Online Retail II dataset (UCI).
+
+DATASET FACTS:
+                                       Metric      Value                                                Source                                                                Note
+Saturday ratio (full raw dataset, pre-filter)      231:1                                01_day_of_week_raw.csv                                   Saturday=30 vs weekday mean=6,942
+                         Guest mean AOV (GBP)      1,039                             01_guest_transactions.csv                                                    n=3,108 invoices
+                         Named mean AOV (GBP)        476                             01_transactions_clean.csv                                                   n=36,604 invoices
+          Guest vs Named AOV (Mann-Whitney p) 2.1862e-14 01_guest_transactions.csv + 01_transactions_clean.csv                                                                 NaN
+                            Cancellation rate      16.6%                             01_transactions_clean.csv Cancelled mean=GBP99 vs normal GBP476 (cancelled are 0.21x SMALLER)
+              Unique customers (named, clean)      5,852                                   01_customer_rfm.csv                                                                 NaN
+                            Unique categories         10                             01_transactions_clean.csv                              Used for entropy normalization log2(N)
+
+B2B CHARACTERISATION TESTS:
+                      test     stat_label   stat_value  sat_orders  weekday_mean      p_value  ci_low  ci_high       verdict                                           data_source  guest_mean_gbp  named_mean_gbp  guest_n  named_n  effect_size_r  guest_revenue_gbp  biz_hours_pct  n_biz_hours  uniform_expected
+          Saturday anomaly  Poisson ratio 2.314133e+02        30.0        6942.4 0.000000e+00  209.46   252.92 B2B confirmed             01_day_of_week_raw.csv (FULL raw dataset)             NaN             NaN      NaN      NaN            NaN                NaN            NaN          NaN               NaN
+        Guest vs Named AOV Mann-Whitney U 4.674864e+07         NaN           NaN 8.376395e-31     NaN      NaN B2B confirmed 01_guest_transactions.csv + 01_transactions_clean.csv      919.731618      476.161303   2929.0  36604.0        0.12793         2693893.91            NaN          NaN               NaN
+Business-hours chi-squared           chi2 5.481449e+04         NaN           NaN 0.000000e+00     NaN      NaN B2B confirmed                                    01_hour_of_day.csv             NaN             NaN      NaN      NaN            NaN                NaN       0.967624         10.0          0.416667
+
+CUSTOMER ENTROPY DISTRIBUTION:
+count    5852.000
+mean        0.603
+std         0.205
+min         0.000
+25%         0.512
+50%         0.658
+75%         0.753
+max         0.936
+
+CUSTOMER SEGMENTS:
+CustomerSegment
+Lost               1508
+Champions          1292
+Loyal              1200
+Potential Loyal    1024
+At Risk             828
+
+Generate exactly 5 testable statistical hypotheses about purchasing behaviour
+in this B2B wholesale context. For each hypothesis specify:
+- H0 (null hypothesis)
+- H1 (alternative)
+- Variables involved
+- Recommended statistical test
+- Expected direction of effect
+
+Format each as: H[n]: [H0] | [H1] | [Variables] | [Test] | [Expected]
+
+WHAT THE LLM SAID:
+----------------------------------------
+Here are 5 testable statistical hypotheses about purchasing behavior in the B2B wholesale context:
+
+H1: CustomerSegment affects Order Value (AOV).
+| H0: μ_LOST = μ_CHAMPION = μ_LOYAL = μ_POTENTIALLOYAL = μ_ATRISK | H1: At least one segment has a significantly different mean AOV compared to the others. | CustomerSegment, named_mean_gbp (AOV) | ANOVA or Kruskal-Wallis test | Expected: Loyal and Champions segments have higher AOV compared to Lost and At Risk segments.
+
+H2: Order frequency is positively correlated with Guest vs Named customer types.
+| H0: ρ_GUEST = 0 | H1: ρ_GUEST > 0 | guest_mean_gbp (AOV), named_mean_gbp (AOV) | Pearson's r or Spearman's rho | Expected: Guests have higher AOV compared to Named customers, and a positive correlation between Guest and Named customer types.
+
+H3: Saturday sales are significantly higher than weekday sales.
+| H0: μ_SATURDAY = μ_WEEKDAY | H1: μ_SATURDAY > μ_WEEKDAY | sat_orders (Saturday ratio), weekday_mean (weekday mean) | Mann-Whitney U test or two-sample t-test | Expected: Saturday sales have a higher mean compared to weekday sales.
+
+H4: Cancellation rate is negatively correlated with Order Value.
+| H0: ρ_CANCEL = 0 | H1: ρ_CANCEL < 0 | named_mean_gbp (AOV), cancellation_rate (Cancelled vs Normal) | Pearson's r or Spearman's rho | Expected: Higher AOV is associated with lower cancellation rates.
+
+H5: Customer entropy distribution affects Purchasing Frequency.
+| H0: μ_ENTROPY = μ_AVERAGE | H1: μ_ENTROPY ≠ μ_AVERAGE | customer_entropy_distribution (customer_entropy), named_mean_gbp (AOV) | Two-sample t-test or Wilcoxon rank-sum test | Expected: Customers with higher entropy have lower AOV compared to those with average entropy.
+
+
+STATISTICAL VALIDATION OF HYPOTHESES
+----------------------------------------
+H_entropy result  : CONFIRMED (p = 0.0000)
+  High-entropy customers mean spend : £4,406
+  Low-entropy  customers mean spend : £1,551
+
+H_UK result       : NOT confirmed (p = 0.9897)
+  UK median recency     : 96 days
+  Non-UK median recency : 78 days
+
+
+RESPONSE 1b - REFINED FOLLOW-UP HYPOTHESES
+----------------------------------------
+Based on the empirical results, here are two refined follow-up hypothesis proposals:
+
+**1. H_entropy_segmentation**
+
+Given that High entropy is associated with higher spend (£4406 vs £1551), it's essential to understand whether specific segments within High entropy customers drive this increased spending behavior. For example:
+
+* Are there specific product categories or industry verticals where High entropy customers exhibit significantly higher spend?
+
+Rationale: If certain segments of High entropy customers are driving the significant increase in spend, it could inform targeted marketing campaigns and sales strategies.
+
+**2. H_UK_active_periods**
+
+Although the initial hypothesis (H_UK) was not supported, we can refine our understanding by exploring the recency behavior of UK customers across different periods:
+
+* Are there specific periods (e.g., quarter or year-end) when UK customers exhibit a higher level of activity compared to Non-UK customers?
+
+Rationale: Even if UK customers are not more recently active overall, identifying specific periods when they are more active can inform sales and marketing strategies. This could lead to targeted campaigns around peak ordering seasons or optimization of customer communication channels during these periods.
+
+These refined hypotheses aim to provide actionable insights that can help the B2B wholesale retailer optimize its customer engagement, segmentation, and sales strategies, ultimately driving revenue growth.

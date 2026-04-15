@@ -1,0 +1,2 @@
+cancel_mean_gbp,normal_mean_gbp,ratio_canc_norm,mwu_p,cancel_count,total_invoices,cancel_rate,note
+98.75452482029921,476.1613031301868,0.20739720798625844,0.0,7286,43890,0.16600592390066074,Cancelled orders are SMALLER than normal - procurement revision pattern

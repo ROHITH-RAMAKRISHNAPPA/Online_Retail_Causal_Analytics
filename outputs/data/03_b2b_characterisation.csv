@@ -1,0 +1,4 @@
+test,stat_label,stat_value,sat_orders,weekday_mean,p_value,ci_low,ci_high,verdict,data_source,guest_mean_gbp,named_mean_gbp,guest_n,named_n,effect_size_r,guest_revenue_gbp,biz_hours_pct,n_biz_hours,uniform_expected
+Saturday anomaly,Poisson ratio,231.41333333333333,30.0,6942.4,0.0,209.46,252.92000000000002,B2B confirmed,01_day_of_week_raw.csv (FULL raw dataset),,,,,,,,,
+Guest vs Named AOV,Mann-Whitney U,46748645.0,,,8.376395384821185e-31,,,B2B confirmed,01_guest_transactions.csv + 01_transactions_clean.csv,919.7316182997611,476.1613031301868,2929.0,36604.0,0.1279304856693093,2693893.91,,,
+Business-hours chi-squared,chi2,54814.48535885167,,,0.0,,,B2B confirmed,01_hour_of_day.csv,,,,,,,0.9676236044657097,10.0,0.4166666666666667

@@ -1,0 +1,8 @@
+DayOfWeek,Orders,Revenue,saturday_orders,weekday_mean_orders,saturday_ratio,source
+Monday,6251,26628.82,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter
+Tuesday,7183,36348.27,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter
+Wednesday,7115,29688.12,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter
+Thursday,8168,31828.78,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter
+Friday,5995,36636.71,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter
+Saturday,30,122.58,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter
+Sunday,4824,18338.49,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter

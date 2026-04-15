@@ -1,0 +1,8 @@
+DayOfWeek,Orders,saturday_orders,weekday_mean_orders,saturday_ratio,source,Revenue_postclean,is_saturday,orders_source,revenue_source
+Monday,6251,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter,2648007.0,False,01_day_of_week_raw.csv (full raw),01_day_of_week.csv (post-clean)
+Tuesday,7183,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter,3137377.5,False,01_day_of_week_raw.csv (full raw),01_day_of_week.csv (post-clean)
+Wednesday,7115,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter,2999270.0,False,01_day_of_week_raw.csv (full raw),01_day_of_week.csv (post-clean)
+Thursday,8168,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter,3674769.0,False,01_day_of_week_raw.csv (full raw),01_day_of_week.csv (post-clean)
+Friday,5995,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter,2453696.8,False,01_day_of_week_raw.csv (full raw),01_day_of_week.csv (post-clean)
+Saturday,30,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter,9803.05,True,01_day_of_week_raw.csv (full raw),01_day_of_week.csv (post-clean)
+Sunday,4824,30,6942.4,231.41333333333333,full_raw_dataset_pre_any_filter,1786959.2,False,01_day_of_week_raw.csv (full raw),01_day_of_week.csv (post-clean)

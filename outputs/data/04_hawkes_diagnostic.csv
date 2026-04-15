@@ -1,0 +1,2 @@
+n_fitted,n_boundary,pct_boundary,n_hawkes_wins,pct_hawkes_wins,n_lr_reject_p05,pct_lr_reject,narrative
+3289,80,0.024323502584372148,1518,0.46153846153846156,1096,0.33323198540589843,Boundary hits validate BG/NBD Poisson assumption for majority

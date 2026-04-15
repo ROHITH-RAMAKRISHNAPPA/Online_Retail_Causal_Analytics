@@ -1,0 +1,8 @@
+Metric,Value,Source,Note
+"Saturday ratio (full raw dataset, pre-filter)",231:1,01_day_of_week_raw.csv,"Saturday=30 vs weekday mean=6,942"
+Guest mean AOV (GBP),"1,039",01_guest_transactions.csv,"n=3,108 invoices"
+Named mean AOV (GBP),476,01_transactions_clean.csv,"n=36,604 invoices"
+Guest vs Named AOV (Mann-Whitney p),2.1862e-14,01_guest_transactions.csv + 01_transactions_clean.csv,
+Cancellation rate,16.6%,01_transactions_clean.csv,Cancelled mean=GBP99 vs normal GBP476 (cancelled are 0.21x SMALLER)
+"Unique customers (named, clean)","5,852",01_customer_rfm.csv,
+Unique categories,10,01_transactions_clean.csv,Used for entropy normalization log2(N)

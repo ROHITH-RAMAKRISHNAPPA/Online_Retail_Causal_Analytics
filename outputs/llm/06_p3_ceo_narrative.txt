@@ -1,0 +1,32 @@
+PROMPT 3 - CEO CUSTOMER NARRATIVE
+Framework: XAIstories (ScienceDirect 2025)
+Narrative subject: top-priority Persuadable customer
+Customer ID: 16446
+============================================================
+
+CUSTOMER DATA PASSED TO LLM:
+----------------------------------------
+  Total Spend      : GBP168,472
+  Orders           : 2
+  Avg Order Value  : GBP84,236
+  Recency          : 0 days
+  CATE             : +0.457
+  Counterfactual CLV: GBP33,986
+
+SHAP VALUES:
+  AOV: SHAP = +84.24
+  NumTransactions: SHAP = +0.02
+  behavioral_entropy: SHAP = +0.00
+  Recency: SHAP = -0.00
+  p_alive: SHAP = +0.92
+
+
+CEO NARRATIVE (LLM output):
+----------------------------------------
+**Key Takeaways: High-Priority Customer Intervention**
+
+This customer stands out due to their exceptionally high historical spend of £168,472 across just two orders, indicating large-ticket purchases on a infrequent basis. Their average order value is a staggering £84,236, which suggests they are willing to invest significantly in our products.
+
+The predictive model identifies this customer as a high-priority outreach target because of their significant potential for future revenue growth. Our counterfactual analysis indicates that if we were able to retain and grow this customer, their lifetime value would increase by approximately £33,986. This suggests a strong opportunity for increased loyalty and spend with targeted engagement.
+
+Given their recent purchase history (Days Since Last Purchase = 0), we recommend scheduling an outreach call within the next two weeks to capitalize on their current interest in our products. We also suggest using email as the primary channel for this initial contact, highlighting new product releases or bespoke offerings that might further entice this high-value customer.

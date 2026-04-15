@@ -1,0 +1,3 @@
+model_variant,features_used,n_features,cv_folds,mean_auc_roc,auc_roc_rounded,model_type,n_estimators,max_depth,learning_rate,delta_auc,lift_pct,llm_improves
+Baseline (RFM features only),"Recency, NumTransactions, TotalSpend, AOV, behavioral_entropy, IsUK",6,5,0.9980498833150655,0.998,XGBoost,200,4,0.05,0.0006028536878378565,0.060403161997820407,True
+LLM-enhanced (+ CAAFE semantic features),"Recency, NumTransactions, TotalSpend, AOV, behavioral_entropy, IsUK, mean_gift, mean_impulse, pct_christmas",9,5,0.9986527370029034,0.9987,XGBoost,200,4,0.05,0.0006028536878378565,0.060403161997820407,True

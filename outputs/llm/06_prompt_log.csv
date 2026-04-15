@@ -1,0 +1,192 @@
+prompt,response,model,timestamp
+Reply with exactly: OLLAMA_OK,OLLAMA_OK,llama3.1:latest,2026-04-15 14:22:57
+"You are a quantitative marketing scientist specialising in B2B wholesale retail analytics.
+Below are validated summary statistics from the Online Retail II dataset (UCI).
+
+DATASET FACTS:
+                                       Metric      Value                                                Source                                                                Note
+Saturday ratio (full raw dataset, pre-filter)      231:1                                01_day_of_week_raw.csv                                   Saturday=30 vs weekday mean=6,942
+                         Guest mean AOV (GBP)      1,039                             01_guest_transactions.csv                                                    n=3,108 invoices
+                         Named mean AOV (GBP)        476                             01_transactions_clean.csv                                                   n=36,604 invoices
+          Guest vs Named AOV (Mann-Whitney p) 2.1862e-14 01_guest_transactions.csv + 01_transactions_clean.csv                                                                 NaN
+                            Cancellation rate      16.6%                             01_transactions_clean.csv Cancelled mean=GBP99 vs normal GBP476 (cancelled are 0.21x SMALLER)
+              Unique customers (named, clean)      5,852                                   01_customer_rfm.csv                                                                 NaN
+                            Unique categories         10                             01_transactions_clean.csv                              Used for entropy normalization log2(N)
+
+B2B CHARACTERISATION TESTS:
+                      test     stat_label   stat_value  sat_orders  weekday_mean      p_value  ci_low  ci_high       verdict                                           data_source  guest_mean_gbp  named_mean_gbp  guest_n  named_n  effect_size_r  guest_revenue_gbp  biz_hours_pct  n_biz_hours  uniform_expected
+          Saturday anomaly  Poisson ratio 2.314133e+02        30.0        6942.4 0.000000e+00  209.46   252.92 B2B confirmed             01_day_of_week_raw.csv (FULL raw dataset)             NaN             NaN      NaN      NaN            NaN                NaN            NaN          NaN               NaN
+        Guest vs Named AOV Mann-Whitney U 4.674864e+07         NaN           NaN 8.376395e-31     NaN      NaN B2B confirmed 01_guest_transactions.csv + 01_transactions_clean.csv      919.731618      476.161303   2929.0  36604.0        0.12793         2693893.91            NaN          NaN               NaN
+Business-hours chi-squared           chi2 5.481449e+04         NaN           NaN 0.000000e+00     NaN      NaN B2B confirmed                                    01_hour_of_day.csv             NaN             NaN      NaN      NaN            NaN                NaN       0.967624         10.0          0.416667
+
+CUSTOMER ENTROPY DISTRIBUTION:
+count    5852.000
+mean        0.603
+std         0.205
+min         0.000
+25%         0.512
+50%         0.658
+75%         0.753
+max         0.936
+
+CUSTOMER SEGMENTS:
+CustomerSegment
+Lost               1508
+Champions          1292
+Loyal              1200
+Potential Loyal    1024
+At Risk             828
+
+Generate exactly 5 testable statistical hypotheses about purchasing behaviour
+in this B2B wholesale context. For each hypothesis specify:
+- H0 (null hypothesis)
+- H1 (alternative)
+- Variables involved
+- Recommended statistical test
+- Expected direction of effect
+
+Format each as: H[n]: [H0] | [H1] | [Variables] | [Test] | [Expected]","Here are 5 testable statistical hypotheses about purchasing behavior in the B2B wholesale context:
+
+H1: CustomerSegment affects Order Value (AOV).
+| H0: μ_LOST = μ_CHAMPION = μ_LOYAL = μ_POTENTIALLOYAL = μ_ATRISK | H1: At least one segment has a significantly different mean AOV compared to the others. | CustomerSegment, named_mean_gbp (AOV) | ANOVA or Kruskal-Wallis test | Expected: Loyal and Champions segments have higher AOV compared to Lost and At Risk segments.
+
+H2: Order frequency is positively correlated with Guest vs Named customer types.
+| H0: ρ_GUEST = 0 | H1: ρ_GUEST > 0 | guest_mean_gbp (AOV), named_mean_gbp (AOV) | Pearson's r or Spearman's rho | Expected: Guests have higher AOV compared to Named customers, and a positive correlation between Guest and Named customer types.
+
+H3: Saturday sales are significantly higher than weekday sales.
+| H0: μ_SATURDAY = μ_WEEKDAY | H1: μ_SATURDAY > μ_WEEKDAY | sat_orders (Saturday ratio), weekday_mean (weekday mean) | Mann-Whitney U test or two-sample t-test | Expected: Saturday sales have a higher mean compared to weekday sales.
+
+H4: Cancellation rate is negatively correlated with Order Value.
+| H0: ρ_CANCEL = 0 | H1: ρ_CANCEL < 0 | named_mean_gbp (AOV), cancellation_rate (Cancelled vs Normal) | Pearson's r or Spearman's rho | Expected: Higher AOV is associated with lower cancellation rates.
+
+H5: Customer entropy distribution affects Purchasing Frequency.
+| H0: μ_ENTROPY = μ_AVERAGE | H1: μ_ENTROPY ≠ μ_AVERAGE | customer_entropy_distribution (customer_entropy), named_mean_gbp (AOV) | Two-sample t-test or Wilcoxon rank-sum test | Expected: Customers with higher entropy have lower AOV compared to those with average entropy.",llama3.1:latest,2026-04-15 14:24:33
+"Two of your hypotheses have been statistically tested:
+
+H_entropy (High entropy → higher spend):
+  High entropy mean spend: £4406
+  Low  entropy mean spend: £1551
+  Mann-Whitney p = 0.0000
+  Result: SUPPORTED
+
+H_UK (UK customers more recently active):
+  UK median recency: 96 days
+  Non-UK recency: 78 days
+  p = 0.9897
+  Result: NOT SUPPORTED
+
+Given these empirical results, propose 2 refined follow-up hypotheses
+that would provide additional actionable insight for a B2B wholesale retailer.","Based on the empirical results, here are two refined follow-up hypothesis proposals:
+
+**1. H_entropy_segmentation**
+
+Given that High entropy is associated with higher spend (£4406 vs £1551), it's essential to understand whether specific segments within High entropy customers drive this increased spending behavior. For example:
+
+* Are there specific product categories or industry verticals where High entropy customers exhibit significantly higher spend?
+
+Rationale: If certain segments of High entropy customers are driving the significant increase in spend, it could inform targeted marketing campaigns and sales strategies.
+
+**2. H_UK_active_periods**
+
+Although the initial hypothesis (H_UK) was not supported, we can refine our understanding by exploring the recency behavior of UK customers across different periods:
+
+* Are there specific periods (e.g., quarter or year-end) when UK customers exhibit a higher level of activity compared to Non-UK customers?
+
+Rationale: Even if UK customers are not more recently active overall, identifying specific periods when they are more active can inform sales and marketing strategies. This could lead to targeted campaigns around peak ordering seasons or optimization of customer communication channels during these periods.
+
+These refined hypotheses aim to provide actionable insights that can help the B2B wholesale retailer optimize its customer engagement, segmentation, and sales strategies, ultimately driving revenue growth.",llama3.1:latest,2026-04-15 14:25:16
+"You are a retail product taxonomy expert. Analyse these wholesale gift-ware products
+from a UK B2B retailer and assign structured semantic features to each.
+
+PRODUCTS (top 25 by revenue):
+StockCode                         Description  TotalRevenue  NumCustomers
+    22423            REGENCY CAKESTAND 3 TIER    286486.280          1314
+   85123A  WHITE HANGING HEART T-LIGHT HOLDER    252227.810          1490
+   85099B             JUMBO BAG RED RETROSPOT    170616.670           978
+    23843         PAPER CRAFT , LITTLE BIRDIE    168469.600             1
+    84879       ASSORTED COLOUR BIRD ORNAMENT    127074.170          1010
+    47566                       PARTY BUNTING    103880.230           894
+    23166      MEDIUM CERAMIC TOP STORAGE JAR     81416.730           138
+    22086     PAPER CHAIN KIT 50'S CHRISTMAS      79594.330           896
+    79321                       CHILLI LIGHTS     72860.140           304
+    22386             JUMBO BAG PINK POLKADOT     68439.190           601
+    21137            BLACK RECORD COVER FRAME     67209.445           198
+    48138                  DOORMAT UNION FLAG     64973.980           678
+   85099F                JUMBO BAG STRAWBERRY     64601.650           549
+    20685               DOORMAT RED RETROSPOT     61829.130           626
+    82484   WOOD BLACK BOARD ANT WHITE FINISH     60513.090           451
+    20725             LUNCH BAG RED RETROSPOT     60271.700           845
+    21843            RED RETROSPOT CAKE STAND     59648.090           599
+    22197                SMALL POPCORN HOLDER     59101.690           601
+    84347 ROTATING SILVER ANGELS T-LIGHT HLDR     57779.168           300
+    22502          PICNIC BASKET WICKER SMALL     55017.600           335
+    21621          VINTAGE UNION JACK BUNTING     54815.120           583
+   15056N           EDWARDIAN PARASOL NATURAL     54741.457           347
+   85099C      JUMBO  BAG BAROQUE BLACK WHITE     53168.340           506
+    22189             CREAM HEART CARD HOLDER     52627.290           536
+    22470               HEART OF WICKER LARGE     52157.680           827
+
+For each StockCode return a JSON array. Each item must have:
+  StockCode, gift_suitability (1-5), seasonal_relevance (christmas/spring/summer/autumn/none/all-year),
+  impulse_purchase_likelihood (1-5), price_tier (budget/mid-range/premium), bulk_order_likely (true/false)
+
+Return ONLY the JSON array. No markdown, no explanation, no backticks.
+Start with [ and end with ]","[
+    {""StockCode"": ""22423"", ""gift_suitability"": 5, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 3, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""85123A"", ""gift_suitability"": 4, ""seasonal_relevance"": ""christmas"", ""impulse_purchase_likelihood"": 5, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""85099B"", ""gift_suitability"": 5, ""seasonal_relevance"": ""spring/summer"", ""impulse_purchase_likelihood"": 2, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""23843"", ""gift_suitability"": 4, ""seasonal_relevance"": ""christmas"", ""impulse_purchase_likelihood"": 5, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""84879"", ""gift_suitability"": 3, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 4, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""47566"", ""gift_suitability"": 5, ""seasonal_relevance"": ""christmas"", ""impulse_purchase_likelihood"": 3, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""23166"", ""gift_suitability"": 4, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 2, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""22086"", ""gift_suitability"": 5, ""seasonal_relevance"": ""christmas"", ""impulse_purchase_likelihood"": 3, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""79321"", ""gift_suitability"": 4, ""seasonal_relevance"": ""summer"", ""impulse_purchase_likelihood"": 5, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""22386"", ""gift_suitability"": 3, ""seasonal_relevance"": ""spring/summer"", ""impulse_purchase_likelihood"": 4, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""21137"", ""gift_suitability"": 5, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 2, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""48138"", ""gift_suitability"": 3, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 4, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""85099F"", ""gift_suitability"": 5, ""seasonal_relevance"": ""spring/summer"", ""impulse_purchase_likelihood"": 3, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""20685"", ""gift_suitability"": 4, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 5, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""82484"", ""gift_suitability"": 3, ""seasonal_relevance"": ""all-year"", ""impulse_purchase_likelihood"": 4, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""20725"", ""gift_suitability"": 5, ""seasonal_relevance"": ""spring/summer"", ""impulse_purchase_likelihood"": 2, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""21843"", ""gift_suitability"": 4, ""seasonal_relevance"": ""christmas"", ""impulse_purchase_likelihood"": 5, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""22197"", ""gift_suitability"": 3, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 4, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""84347"", ""gift_suitability"": 5, ""seasonal_relevance"": ""christmas"", ""impulse_purchase_likelihood"": 3, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""22502"", ""gift_suitability"": 4, ""seasonal_relevance"": ""spring/summer"", ""impulse_purchase_likelihood"": 5, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""21621"", ""gift_suitability"": 3, ""seasonal_relevance"": ""christmas"", ""impulse_purchase_likelihood"": 4, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""15056N"", ""gift_suitability"": 5, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 2, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""85099C"", ""gift_suitability"": 4, ""seasonal_relevance"": ""spring/summer"", ""impulse_purchase_likelihood"": 3, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true},
+    {""StockCode"": ""22189"", ""gift_suitability"": 5, ""seasonal_relevance"": ""none"", ""impulse_purchase_likelihood"": 2, ""price_tier"": ""budget"", ""bulk_order_likely"": false},
+    {""StockCode"": ""22470"", ""gift_suitability"": 4, ""seasonal_relevance"": ""christmas"", ""impulse_purchase_likelihood"": 5, ""price_tier"": ""mid-range"", ""bulk_order_likely"": true}
+]",llama3.1:latest,2026-04-15 14:29:04
+"You are a senior retail business analyst presenting to the CEO of a B2B wholesale
+gift-ware company. Below are the key predictive features and SHAP values for the
+customer identified as the highest-priority intervention target.
+
+CUSTOMER PROFILE:
+  Customer ID            : 16446
+  Total Historical Spend : GBP168,472
+  Number of Orders       : 2
+  Average Order Value    : GBP84,236
+  Days Since Last Purchase: 0
+  CATE (causal uplift)   : +0.457
+  Counterfactual CLV     : GBP33,986
+
+TOP SHAP CONTRIBUTORS (positive = increases return probability):
+  AOV: SHAP = +84.24
+  NumTransactions: SHAP = +0.02
+  behavioral_entropy: SHAP = +0.00
+  Recency: SHAP = -0.00
+  p_alive: SHAP = +0.92
+
+Write a three-paragraph business narrative (150-200 words total):
+Para 1: Customer behavioural profile - what makes this customer distinctive
+Para 2: Why the model identifies them as a high-priority outreach target
+Para 3: Specific recommended outreach strategy with timing and channel
+
+Write in plain English for a C-suite audience. No technical jargon.","**Key Takeaways: High-Priority Customer Intervention**
+
+This customer stands out due to their exceptionally high historical spend of £168,472 across just two orders, indicating large-ticket purchases on a infrequent basis. Their average order value is a staggering £84,236, which suggests they are willing to invest significantly in our products.
+
+The predictive model identifies this customer as a high-priority outreach target because of their significant potential for future revenue growth. Our counterfactual analysis indicates that if we were able to retain and grow this customer, their lifetime value would increase by approximately £33,986. This suggests a strong opportunity for increased loyalty and spend with targeted engagement.
+
+Given their recent purchase history (Days Since Last Purchase = 0), we recommend scheduling an outreach call within the next two weeks to capitalize on their current interest in our products. We also suggest using email as the primary channel for this initial contact, highlighting new product releases or bespoke offerings that might further entice this high-value customer.",llama3.1:latest,2026-04-15 14:29:48
