@@ -210,12 +210,21 @@ Download from: https://www.kaggle.com/datasets/mashlyn/online-retail-ii-uci
 
 ---
 
-## References
-
-- Fader & Hardie (2005) - BG/NBD model. *Marketing Science*
-- Guidotti et al. (2015) - Behavioral entropy. *IEEE DSAA*
-- Newman (2006) - PMI network communities. *PNAS*
-- Lee & See (2004) - Algorithmic trust calibration. *Human Factors*
-- Hollmann et al. (2024) - CAAFE framework. *NeurIPS*
-- Zhao et al. (2024) - HypoGeniC. *arXiv 2404.04326*
-- XAIstories (2025) - SHAP narrative translation. *ScienceDirect*
+# References
+* Chen, T., & Guestrin, C. (2016). XGBoost: A scalable tree boosting system. *Proceedings of the 22nd ACM SIGKDD International Conference* (pp. 785–794). ACM. [https://arxiv.org/pdf/1603.02754](https://arxiv.org/pdf/1603.02754)
+* Church, K. W., & Hanks, P. (1990). Word association norms, mutual information, and lexicography. *Computational Linguistics*, 16(1), 22–29. [https://aclanthology.org/J90-1003.pdf](https://aclanthology.org/J90-1003.pdf)
+* Cox, D. R. (1972). Regression models and life-tables. *Journal of the Royal Statistical Society: Series B*, 34(2), 187–220. [https://doi.org/10.1111/j.2517-6161.1972.tb00899.x](https://doi.org/10.1111/j.2517-6161.1972.tb00899.x)
+* Davidson-Pilon, C. (2019a). Lifelines: Survival analysis in Python. *Journal of Open Source Software*, 4(40), 1317. [https://doi.org/10.21105/joss.01317](https://doi.org/10.21105/joss.01317)
+* Davidson-Pilon, C. (2019b). Lifetimes (v0.11.3) [Software library]. GitHub. [https://github.com/CamDavidsonPilon/lifetimes](https://github.com/CamDavidsonPilon/lifetimes)
+* Fader, P. S., Hardie, B. G. S., & Lee, K. L. (2005). 'Counting your customers' the easy way: An alternative to the Pareto/NBD model. *Marketing Science*, 24(2), 275–284. [http://brucehardie.com/papers/018/fader_et_al_mksc_05.pdf](http://brucehardie.com/papers/018/fader_et_al_mksc_05.pdf)
+* Fader, P. S., & Hardie, B. G. S. (2013). The Gamma-Gamma model of monetary value. [https://www.brucehardie.com/notes/025/gamma_gamma.pdf](https://www.brucehardie.com/notes/025/gamma_gamma.pdf)
+* Hagberg, A. A., Schult, D. A., & Swart, P. J. (2008). Exploring network structure, dynamics, and function using NetworkX. *Proceedings of SciPy 2008* (pp. 11–15). [https://aric.hagberg.org/papers/hagberg-2008-exploring.pdf](https://aric.hagberg.org/papers/hagberg-2008-exploring.pdf)
+* Hawkes, A. G. (1971). Spectra of some self-exciting and mutually exciting point processes. *Biometrika*, 58(1), 83–90. [https://www.dcscience.net/Hawkes-Biometrika-1971.pdf](https://www.dcscience.net/Hawkes-Biometrika-1971.pdf)
+* Hollmann, N., Müller, S., Purucker, L., Krishnakumar, A., Arenz, M., Hoo, E., Shao, R., & Hutter, F. (2024). CAAFE: Context-aware automated feature engineering for tabular data. *NeurIPS 2023*. [https://arxiv.org/pdf/2305.03403](https://arxiv.org/pdf/2305.03403)
+* Künzel, S. R., Sekhon, J. S., Bickel, P. J., & Yu, B. (2019). Metalearners for estimating heterogeneous treatment effects using machine learning. *PNAS*, 116(10), 4156–4165. [https://doi.org/10.1073/pnas.1804597116](https://doi.org/10.1073/pnas.1804597116)
+* Martens, D., Hinns, J., Dams, C., Vergouwen, M., & Evgeniou, T. (2025). Tell me a story! Narrative-driven XAI with large language models. *Information Fusion*, 115, 102700. [https://arxiv.org/pdf/2309.17057](https://arxiv.org/pdf/2309.17057)
+* Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., et al. (2011). Scikit-learn: Machine learning in Python. *JMLR*, 12, 2825–2830. [https://jmlr.org/papers/volume12/pedregosa11a/pedregosa11a.pdf](https://jmlr.org/papers/volume12/pedregosa11a/pedregosa11a.pdf)
+* Qi, Z., Liu, X., Li, X., Ma, Y., & Gao, J. (2024). HypoGeniC: Hypothesis generation via LLMs for scientific discovery. *arXiv:2404.04326*. [https://arxiv.org/pdf/2404.04326](https://arxiv.org/pdf/2404.04326)
+* Radcliffe, N. J., & Surry, P. D. (2011). Real-world uplift modelling with significance-based uplift trees (Technical Report TR-2011-1). *Stochastic Solutions*. [https://stochasticsolutions.com/pdf/sig-based-up-trees.pdf](https://stochasticsolutions.com/pdf/sig-based-up-trees.pdf)
+* Rzepakowski, P., & Jaroszewicz, S. (2012). Decision trees for uplift modelling with single and multiple treatments. *Knowledge and Information Systems*, 32(2), 303–327. [https://doi.org/10.1007/s10115-011-0434-0](https://doi.org/10.1007/s10115-011-0434-0)
+* Shannon, C. E. (1948). A mathematical theory of communication. *Bell System Technical Journal*, 27(3), 379–423. [https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf)
