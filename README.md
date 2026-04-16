@@ -1,6 +1,15 @@
 # Causal Purchase Dynamics Engine
 ### Online Retail II - B2B Wholesale Analytics
 
+## Team Roles
+| Role | Team Members |
+| :--- | :--- |
+| **Data Engineers** | Jingbo Wang, Rohith Ramakrishnappa |
+| **Modeler/Analysts** | Manveen Kaur, Zheng (Raiz) Zou |
+| **Visualization** | Shu-Han (Remi) Hsu, Susan Kiely |
+| **LLM/Prompt Specialists** | Benedicta Tony Awusaku, Mustafa Can Buken |
+| **PM/Storytellers** | Aman Bansal, Rose Slocock |
+
 > **"Which customers should a B2B wholesaler contact and which should it never contact?"**
 
 This project applies causal inference, probabilistic customer health modelling, and LLM-assisted hypothesis generation to the Online Retail II dataset (UCI/Kaggle). The result is a ranked intervention list, a sleeping dog blacklist, and a fully auditable analytics pipeline.
