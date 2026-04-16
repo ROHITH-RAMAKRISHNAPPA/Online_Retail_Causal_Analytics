@@ -5,8 +5,8 @@
 | Role | Team Members |
 | :--- | :--- |
 | **Data Engineers** | Jingbo Wang, Rohith Ramakrishnappa |
-| **Modeler/Analysts** | Manveen Kaur, Zheng (Raiz) Zou |
-| **Visualization** | Shu-Han (Remi) Hsu, Susan Kiely |
+| **Modeler/Analysts** | Manveen Kaur, Zheng Zou |
+| **Visualization** | Shu-Han Hsu, Susan Kiely |
 | **LLM/Prompt Specialists** | Benedicta Tony Awusaku, Mustafa Can Buken |
 | **PM/Storytellers** | Aman Bansal, Rose Slocock |
 
